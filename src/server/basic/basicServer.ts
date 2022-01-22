@@ -1,13 +1,15 @@
-export class BasicInternalServer {
-    private data: any = null;
+import {BasicModelController} from '../../constroller/basicModelController';
 
-    initialize(data: any) {
-        this.data = data;
+export class BasicInternalServer<Model extends BasicModelController> {
+
+    constructor(private data: Model) {
     }
 
-    fetchDataAll() {
-        return this.data;
+    read<T, KEY_TYPE extends any>(key: KEY_TYPE): T {
+        return this.data.getData(key);
     }
 
-    static BasicInternalServer = new BasicInternalServer();
+    set<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T) {
+        return this.data.setData(key, data);
+    }
 }
