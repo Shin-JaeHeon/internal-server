@@ -1,4 +1,4 @@
-import {BasicModelController} from '../../constroller/basicModelController';
+import {BasicModelController} from '../../controller/basicModelController';
 
 export class MemoryModel implements BasicModelController {
     data: any = {};
