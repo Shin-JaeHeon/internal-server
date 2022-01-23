@@ -1,6 +1,6 @@
 import {BasicModelAction} from '../../modelAction/basicModelAction';
 
-export class MemoryModel {
+export class MemoryModel implements BasicModelAction {
     data: any = {};
 
     getData<T, KEY_TYPE>(key: KEY_TYPE): T {
