@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "ts-mocha -p tsconfig.json **/*.spec.ts",
-    "coverage": "nyc --reporter=html ts-mocha -p tsconfig.json **/*.spec.ts"
+    "test": "ts-mocha -r mock-local-storage -p tsconfig.json **/*.spec.ts",
+    "coverage": "nyc --reporter=html ts-mocha -r mock-local-storage -p tsconfig.json **/*.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@types/mocha": "^9.1.0",
     "chai": "^4.3.4",
     "mocha": "^9.1.4",
+    "mock-local-storage": "^1.1.19",
     "nyc": "^15.1.0",
     "ts-mocha": "^9.0.2",
     "ts-node": "^10.4.0",

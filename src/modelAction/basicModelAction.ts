@@ -1,5 +1,5 @@
-export interface BasicModelAction {
-    getData<T, KEY_TYPE extends any>(key: KEY_TYPE): T;
+export interface BasicModelAction<KEY_TYPE = any, DATA_TYPE = any> {
+    getData(key: KEY_TYPE): DATA_TYPE;
 
-    setData<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T);
+    setData(key: KEY_TYPE, data: DATA_TYPE);
 }

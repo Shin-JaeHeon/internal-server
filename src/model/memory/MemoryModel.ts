@@ -1,13 +1,13 @@
 import {BasicModelAction} from '../../modelAction/basicModelAction';
 
-export class MemoryModel implements BasicModelAction {
+export class MemoryModel {
     data: any = {};
 
-    getData<T, KEY_TYPE extends any>(key: KEY_TYPE): T {
+    getData<T, KEY_TYPE>(key: KEY_TYPE): T {
         return this.data[key] as T;
     }
 
-    setData<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T) {
+    setData<T, KEY_TYPE>(key: KEY_TYPE, data: T) {
         this.data[key] = data;
     }
 }

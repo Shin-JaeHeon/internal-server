@@ -1,7 +1,7 @@
 import {StringKeyBasicModelAction} from '../../modelAction/stringKeyBasicModelAction';
 
 export class LocalStorageModel implements StringKeyBasicModelAction {
-    getData<DATA_TYPE extends any>(key: string): DATA_TYPE {
+    getData<KEY_TYPE extends string>(key: KEY_TYPE) {
         return JSON.parse(window.localStorage.getItem(key) ?? '{}');
     }
 

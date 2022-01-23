@@ -1,27 +1,27 @@
 import {BasicModelAction} from '../../modelAction/basicModelAction';
 
-export class BasicInternalServer<Model extends BasicModelAction> {
+export class BasicInternalServer<KEY_TYPE, DATA_TYPE, Model extends BasicModelAction<KEY_TYPE, DATA_TYPE>> {
 
     constructor(private data: Model) {
     }
 
-    get<T, KEY_TYPE extends any>(key: KEY_TYPE): T {
+    get(key: KEY_TYPE) {
         return this.data.getData(key);
     }
 
-    read<T, KEY_TYPE extends any>(key: KEY_TYPE): T {
+    read(key: KEY_TYPE): DATA_TYPE {
         return this.get(key);
     }
 
-    set<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T) {
+    set(key: KEY_TYPE, data: DATA_TYPE) {
         this.data.setData(key, data);
     }
 
-    create<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T) {
+    create(key: KEY_TYPE, data: DATA_TYPE) {
         this.set(key, data);
     }
 
-    update<T, KEY_TYPE extends any>(key: KEY_TYPE, data: T) {
+    update(key: KEY_TYPE, data: DATA_TYPE) {
         this.set(key, data);
     }
 }
