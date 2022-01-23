@@ -1,0 +1,5 @@
+node_modules/**
+.idea
+internal-server.iml
+.nyc_output
+coverage
