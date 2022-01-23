@@ -1,6 +1,6 @@
-import {BasicModelController} from '../../controller/basicModelController';
+import {BasicModelAction} from '../../modelAction/basicModelAction';
 
-export class MemoryModel implements BasicModelController {
+export class MemoryModel implements BasicModelAction {
     data: any = {};
 
     getData<T, KEY_TYPE extends any>(key: KEY_TYPE): T {

@@ -1,6 +1,6 @@
-import {BasicModelController} from '../../controller/basicModelController';
+import {BasicModelAction} from '../../modelAction/basicModelAction';
 
-export class BasicInternalServer<Model extends BasicModelController> {
+export class BasicInternalServer<Model extends BasicModelAction> {
 
     constructor(private data: Model) {
     }
