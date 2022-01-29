@@ -1,7 +1,6 @@
 import {describe, it} from 'mocha';
-import {BasicInternalServer, MemoryModel} from '../../../src';
+import {BasicInternalServer, MemoryModel, LocalStorageModel, SessionStorageModel} from '../../../index';
 import {expect} from 'chai';
-import {LocalStorageModel} from '../../../src/model/browserStorage/localStorageModel';
 
 // @ts-ignore
 // noinspection JSConstantReassignment
@@ -10,7 +9,9 @@ import 'mock-local-storage';
 // @ts-ignore
 // noinspection JSConstantReassignment
 window.localStorage = global.localStorage;
-
+// @ts-ignore
+// noinspection JSConstantReassignment
+window.sessionStorage = global.sessionStorage;
 
 const getUniqueKey = (key: string): string => key + String(Math.random());
 
@@ -71,7 +72,7 @@ describe('localStorage Server', () => {
         return {server, model};
     };
 
-    it('h', () => {
+    it('서버를 통해 모델에 데이터 추가', () => {
         const {server} = getLocalStorageTestEnvironment();
         const key = getUniqueKey('name');
         const value = '홍길동';
@@ -114,6 +115,62 @@ describe('localStorage Server', () => {
 
     it('없는 아이템 갖고오면 {} 노출', () => {
         const {server} = getLocalStorageTestEnvironment();
+        const key = getUniqueKey('noname');
+        expect(server.get(key)).to.be.deep.equal({});
+    });
+});
+
+describe('sessionStorage Server', () => {
+
+    const getSessionStorageTestEnvironment = (): { server: BasicInternalServer<string, any, SessionStorageModel>; model: SessionStorageModel } => {
+        const model = new SessionStorageModel();
+        const server = new BasicInternalServer(model);
+        return {server, model};
+    };
+
+    it('서버를 통해 모델에 데이터 추가', () => {
+        const {server} = getSessionStorageTestEnvironment();
+        const key = getUniqueKey('name');
+        const value = '홍길동';
+        server.set(key, value);
+        expect(server.get(key)).to.be.equal(value);
+    });
+
+    it('서버를 통해 모델에 데이터 추가', () => {
+        const {server} = getSessionStorageTestEnvironment();
+        const key = getUniqueKey('name');
+        const value = '홍길동';
+        server.set(key, value);
+        expect(server.get(key)).to.be.equal(value);
+    });
+
+    it('서버와 모델 동일성 확인', () => {
+        const {server, model} = getSessionStorageTestEnvironment();
+        const key = getUniqueKey('name');
+        const value = '홍길동';
+        server.set(key, value);
+        expect(server.get(key)).to.be.equal(model.getData(key));
+    });
+
+    it('get() read() 동일성 확인', () => {
+        const {server} = getSessionStorageTestEnvironment();
+        const key = getUniqueKey('name');
+        const value = '홍길동';
+        server.set(key, value);
+        expect(server.get(key)).to.be.equal(server.read(key));
+    });
+
+    it('set() create() 동일성 확인', () => {
+        const {server} = getSessionStorageTestEnvironment();
+        const key = getUniqueKey('name');
+        const value = '홍길동';
+        server.create(key, value);
+        expect(server.get(key)).to.be.equal(value);
+    });
+
+
+    it('없는 아이템 갖고오면 {} 노출', () => {
+        const {server} = getSessionStorageTestEnvironment();
         const key = getUniqueKey('noname');
         expect(server.get(key)).to.be.deep.equal({});
     });
