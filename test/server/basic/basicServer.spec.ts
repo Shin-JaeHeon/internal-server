@@ -1,5 +1,5 @@
 import {describe, it} from 'mocha';
-import {BasicInternalServer, MemoryModel, LocalStorageModel, SessionStorageModel} from '../../../index';
+import {BasicInternalServer, MemoryModel, LocalStorageModel, SessionStorageModel} from '../../../src';
 import {expect} from 'chai';
 
 // @ts-ignore
