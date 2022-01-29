@@ -3,11 +3,12 @@
   "author": "Shin-JaeHeon",
   "version": "0.0.1",
   "description": "프론트용 브라우저단 내부 서버",
-  "main": "index.js",
+  "main": "index.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build": "",
     "test": "ts-mocha -r mock-local-storage -p tsconfig.json **/*.spec.ts",
     "coverage": "nyc --reporter=html ts-mocha -r mock-local-storage -p tsconfig.json **/*.spec.ts"
   },
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/Shin-JaeHeon/internal-server#readme",
   "devDependencies": {
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.135",
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.1.0",
     "chai": "^4.3.4",
